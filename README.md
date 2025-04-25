@@ -17,6 +17,16 @@ However, those dot-prefixed functions can be used in other files within the same
 
 Functions that aren't prefixed with a dot are "exported" and available outside of the pallet.
 
+### Isn't that what {box} does with `__init__.R`?
+
+Not quite.
+
+With {box} and `__init__.R`, you would have to `#' @export` everything and re-export within `__init__.R`.
+However, even then, if you wanted to use something from another file within the same directory, then you'd have to explicitly `box::use` in one of the files.
+This also creates the risk of someone relying on internals exported for in-directory usage outside of the directory.
+
+With pallet, everything within the directory is available, so there is no risk of exposing internals.
+
 ## Usage
 
 > [!TIP]
