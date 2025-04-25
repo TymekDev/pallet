@@ -1,2 +1,4 @@
+^\.jj$
+^\.lintr$
 ^LICENSE\.md$
 ^Makefile$
