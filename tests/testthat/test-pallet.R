@@ -2,7 +2,7 @@ describe("pallet - single file directory", {
   it("works with a single exported function", {
     # Arrange
     pallet_dir <- withr::local_tempdir()
-    writeLines("foo <- function() {}", tempfile(tmpdir = pallet_dir, fileext = "R"))
+    writeLines("foo <- function() {}", tempfile(tmpdir = pallet_dir, fileext = ".R"))
 
     # Act
     pallet <- .create(pallet_dir)
@@ -16,7 +16,7 @@ describe("pallet - single file directory", {
     pallet_dir <- withr::local_tempdir()
     writeLines("foo <- function() {}
 
-.bar <- function() {}", tempfile(tmpdir = pallet_dir, fileext = "R"))
+.bar <- function() {}", tempfile(tmpdir = pallet_dir, fileext = ".R"))
 
     # Act
     pallet <- .create(pallet_dir)
@@ -28,7 +28,7 @@ describe("pallet - single file directory", {
   it("attaches objects", {
     # Arrange
     pallet_dir <- withr::local_tempdir()
-    writeLines("value <- 123", tempfile(tmpdir = pallet_dir, fileext = "R"))
+    writeLines("value <- 123", tempfile(tmpdir = pallet_dir, fileext = ".R"))
 
     # Act
     pallet <- .create(pallet_dir)
@@ -43,7 +43,7 @@ describe("pallet - single file directory", {
     pallet_dir <- withr::local_tempdir()
     writeLines("foo <- function() .bar() + 3
 
-.bar <- function() 2", tempfile(tmpdir = pallet_dir, fileext = "R"))
+.bar <- function() 2", tempfile(tmpdir = pallet_dir, fileext = ".R"))
 
     # Act
     pallet <- .create(pallet_dir)
