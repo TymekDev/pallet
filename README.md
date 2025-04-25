@@ -4,6 +4,9 @@
 
 Pallet is a proof of concept of **directory-level imports for R**.
 
+> [!IMPORTANT]
+> This package is not battle-tested yet. Use at your own discretion.
+
 ## Overview
 
 A _pallet_ is a directory.
@@ -47,6 +50,38 @@ directory$baz()
 ## 123
 ```
 
+### Multiple Files
+
+With pallet you don't have to have everything in a single file.
+You can split functions into multiple files and `pallet::use()` will make it work for you!
+
+```r
+# path/to/directory/file_A.R
+foo <- \() 100
+
+.bar <- \() 23
+```
+
+```r
+# path/to/directory/file_B.R
+baz <- \() foo() + .bar()
+```
+
+The behavior won't change compared to the single file example :sparkles:
+
+```r
+pallet::use("path/to/directory")
+
+directory$foo()
+## 100
+
+directory$.bar()
+## Error in `$.pallet`(directory, .bar) : name '.bar' not found in 'directory'
+
+directory$baz()
+## 123
+```
+
 ## Installation
 
 ```r
@@ -57,8 +92,8 @@ pak::pak("TymekDev/pallete")
 ## Aspirations
 
 - [x] Single-file pallets
-- [ ] Multi-file pallets
-- [ ] Nested pallets
+- [x] Multi-file pallets
+- [ ] Nested pallets (it _might_ work already)
 - [ ] Disallow pallet package attaching
 - [ ] Pallet reloading
 - [ ] Pallet Caching
