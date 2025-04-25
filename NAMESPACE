@@ -2,3 +2,4 @@
 
 S3method("$",pallet)
 S3method(print,pallet)
+export(use)

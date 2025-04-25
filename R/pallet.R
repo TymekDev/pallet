@@ -9,7 +9,7 @@
 
 #' @export
 print.pallet <- function(x, ...) {
-  cat(paste0("<", attr(x, "name"), ">\n"))
+  cat(paste0("<pallet:", attr(x, "name"), ">\n"))
   invisible(x)
 }
 
@@ -36,7 +36,7 @@ print.pallet <- function(x, ...) {
   structure(
     env,
     class = "pallet",
-    name = paste0("pallet:", pallet_name),
+    name = pallet_name,
     namespace = ns
   )
 }
