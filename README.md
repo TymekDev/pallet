@@ -14,7 +14,40 @@ However, those dot-prefixed functions can be used in other files within the same
 
 Functions that aren't prefixed with a dot are "exported" and available outside of the pallet.
 
-## Install
+## Usage
+
+> [!TIP]
+> If you are familiar with {box}, then usage is similar to `box:use(path/to/directory)`.
+> However, with pallet, the entire directory is in use (not only `__init__.R`).
+
+### Single File
+
+With an `.R` script in `path/to/directory` (its name doesn't matter):
+
+```r
+foo <- \() 100
+
+.bar <- \() 23
+
+baz <- \() foo() + .bar()
+```
+
+We can access only the functions that aren't prefixed with dot:
+
+```r
+pallet::use("path/to/directory")
+
+directory$foo()
+## 100
+
+directory$.bar()
+## Error in `$.pallet`(directory, .bar) : name '.bar' not found in 'directory'
+
+directory$baz()
+## 123
+```
+
+## Installation
 
 ```r
 # install.packages("pak")
